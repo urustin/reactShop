@@ -24,6 +24,8 @@ function App() {
     if(localStorage.length===0){
       let selectArray = [];
       localStorage.setItem("localCart",JSON.stringify(selectArray));
+      const footer = document.querySelector("#footerFix");
+      footer.classList.add("none");
     }
     
     
@@ -108,7 +110,7 @@ function MainPage(props){
                   return(
                   <>
                     {
-                      props.changed ? <Post  items = {a} ></Post> : ""
+                      props.changed ? <Post  items = {a} key={i}></Post> : ""
                     }
                     
                   </>
@@ -132,7 +134,7 @@ function Post(props){
   
   return(
     <Nav.Link onClick={()=>{navigate(`/detail/${props.items.id}`)}}>
-      <Col sm className = {"id"+props.items.id}>
+      <Col sm className = {"id"+props.items.id} key={props.items.id}>
 
         
         

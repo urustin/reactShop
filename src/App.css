@@ -65,3 +65,42 @@
     /* background-color: #282c34; */
   }
 }
+
+
+
+/* //footer */
+.none{
+
+  bottom: -50px;
+  opacity: 0;
+  display: none;
+}
+
+#footerFix{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  opacity: 1;
+  transition: 3s;
+}
+
+#footer{
+  
+  background-color: red;
+  display: flex;
+  height: 120px;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.ft_itemBox{
+  background-color: beige;
+  width: 60%;
+  text-align: center;
+}
+.ft_priceBox{
+  /* right: 0; */
+  width: 40%;
+  background-color: azure;
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 import { Table } from 'react-bootstrap'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addcount } from '../store/cartData';
+
 
 function Cart(){
 

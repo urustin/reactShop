@@ -4,7 +4,7 @@ import itemData from './data.js';
 
 
 var _ = require('lodash');
-
+let reduxCartData = JSON.parse(localStorage.getItem("localCart"));
 
 // console.log(itemData);
 // import { useState } from 'reacAt';
@@ -35,26 +35,33 @@ let reduxItemData = createSlice({
 
             return copy;
         }
-        // ,
-
-        // changeItembyName(){
-        //     let copy = _.cloneDeep(itemData);
-        //     copy.sort();
-        //     return copy;
-        // }
-
     }
+})
 
+let redux_LocalCart = createSlice({
+    name : "redux_localCart",
+    initialState : reduxCartData,
+    reducers :{
+        changeLocalCart(){
+            
+            let copy = reduxCartData = JSON.parse(localStorage.getItem("localCart"));
+            console.log(copy);
+
+            return copy;
+        }
+    }
+    
 })
 
 export let { changeItembyPrice } = reduxItemData.actions;
-
+export let { changeLocalCart } = redux_LocalCart.actions;
 
 export default configureStore({
   reducer: {
     user : user.reducer,
     stock : stock.reducer,
     cartData : cartData.reducer,
-    itemData : reduxItemData.reducer
+    itemData : reduxItemData.reducer,
+    redux_LocalCart : redux_LocalCart.reducer,
    }
 }) 

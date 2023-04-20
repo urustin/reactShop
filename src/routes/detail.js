@@ -1,5 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeLocalCart } from '../store.js';
+
+
+
 
 function Detail(props){
     
@@ -11,7 +15,7 @@ function Detail(props){
         }
     }
     let cartNumber =0;
-    
+    let dispatch = useDispatch();
         // console.log(itemNumber);
     const addCart = ()=>{
         console.log(cartNumber);
@@ -26,13 +30,19 @@ function Detail(props){
         }
         if(cartNumber===1){
             copy.push(selectItem);
+            // dispatch(changeLocalCart());
         }else{
-            console.log(copy[copy.length-1])
+            // console.log(copy[copy.length-1])
             copy[copy.length-1].quantity++;
+            
         }
         
 
-        localStorage.setItem('localCart', JSON.stringify(copy))
+        localStorage.setItem('localCart', JSON.stringify(copy));
+        
+        dispatch(changeLocalCart());
+        const footer = document.querySelector("#footerFix");
+        footer.classList.remove("none");
     }
     return(
         <>
