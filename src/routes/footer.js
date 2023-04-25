@@ -27,7 +27,7 @@ function Footer(){
             <div id="footer">
             
                 <div className="ft_itemBox">
-                    <div className="ft_itemName"> put in your cart.</div>
+                    {/* <div className="ft_itemName"> put in your cart.</div> */}
                     <div>go cart(not yet)</div>
                 </div>
                 <div className="ft_priceBox">

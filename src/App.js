@@ -18,6 +18,10 @@ import { Routes, Route, Link, useParams, useNavigate, Outlet } from 'react-route
 import { useDispatch, useSelector } from 'react-redux';
 import { changeItembyPrice } from './store.js';
 
+//paypal
+
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 function App() {
   useEffect(()=>{
     
@@ -39,11 +43,39 @@ function App() {
   // console.log(changeItembyPrice);
   
 
+  //paypal amount control
+
+  const handleCreateOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: "0.10", // Replace with the desired amount
+            currency: "USD", // Replace with the desired currency
+          },
+        },
+      ],
+    });
+  };
+
+  const handleApprove = (data, actions) => {
+    return actions.order.capture().then((details) => {
+      console.log("Transaction completed:", details);
+      // Handle successful transaction completion (e.g., show a success message, redirect the user, etc.)
+    });
+  };
+
+  const handleError = (error) => {
+    console.error("Error processing payment:", error);
+    // Handle payment processing errors (e.g., show an error message)
+  };
+
+
 
 
 
   return (
-    
+    <PayPalScriptProvider options={{ "client-id": "AWBqGKmGqMBNgE73sHRxoT2VCLgtGn5fW3DmY5q2Swrz0R8PSpf5YrC3lsZmWLtTYP3Rc455IKXwvQ2f" }}>
     <div className="App">
       <>
 
@@ -79,10 +111,17 @@ function App() {
 
         
       </Routes>
+      <PayPalButtons 
+        createOrder={handleCreateOrder}
+        onApprove={handleApprove}
+        onError={handleError}
+      />
+      
 
 
 
     </div>
+    </PayPalScriptProvider>
   );
 }
 
